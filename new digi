@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>Ranganathan & Megha — Reception Invitation · 13 September 2026</title>
+<meta name="description" content="Together with their families, Ranganathan Thetharappan & Megha Roy joyfully invite you to celebrate their Reception — 13 September 2026, Vijay Paradise, Coimbatore."/>
+<meta name="theme-color" content="#425c39"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f7f2e7;
+  --bg2:#f0e9d8;
+  --bg3:#e8dfc9;
+  --green:#425c39;
+  --green2:#567045;
+  --gold:#a3812f;
+  --gold2:#c6a35c;
+  --ink:#2a2a1c;
+  --muted:#6f6650;
+  --rule:rgba(163,129,47,.22);
+  --card:#ffffff;
+  --cardborder:rgba(163,129,47,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.6;-webkit-font-smoothing:antialiased;font-weight:600}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* BACKGROUND DUST ANIMATION */
+.travel-dots{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.travel-dot{position:absolute;width:3px;height:3px;background:var(--green2);border-radius:50%;opacity:0;animation:twinkle linear infinite}
+.travel-dot:nth-child(1){left:8%;top:20%;animation-duration:3s;animation-delay:0s}
+.travel-dot:nth-child(2){left:22%;top:65%;animation-duration:4s;animation-delay:-.8s}
+.travel-dot:nth-child(3){left:45%;top:15%;animation-duration:3.5s;animation-delay:-1.5s}
+.travel-dot:nth-child(4){left:68%;top:72%;animation-duration:4.5s;animation-delay:-.4s}
+.travel-dot:nth-child(5){left:82%;top:38%;animation-duration:3.2s;animation-delay:-2s}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:.55}}
+
+/* LANDING SCREEN */
+#landing{position:fixed;inset:0;z-index:1000;background:radial-gradient(ellipse at 50% 32%,#20301b 0%,#16230f 52%,#0c1408 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 28px;text-align:center;transition:opacity 1s ease,visibility 1s ease}
+#landing.gone{opacity:0;visibility:hidden;pointer-events:none}
+#landing::before{content:"";position:absolute;top:22px;left:22px;right:22px;bottom:22px;border:1px solid rgba(198,163,92,.45);pointer-events:none}
+
+.landing-greet{font-family:'Cinzel',serif;letter-spacing:.4em;font-size:9.5px;color:var(--gold2);margin-bottom:10px}
+.landing-names{font-family:'Italiana',serif;font-size:clamp(48px,14vw,90px);line-height:.88;color:#f5efe0;margin-bottom:18px}
+.landing-names .amp{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold2);display:block;font-size:.46em;margin:8px 0}
+.landing-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:#c9c0a6;margin-bottom:20px;max-width:32ch}
+.landing-date{font-family:'Cinzel',serif;letter-spacing:.3em;font-size:clamp(16px,4vw,20px);color:var(--gold2);margin-bottom:32px;font-weight:600}
+
+.enter-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 40px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#16230f;border:none;font-family:'Cinzel',serif;letter-spacing:.28em;font-size:10.5px;cursor:pointer;border-radius:2px;box-shadow:0 10px 30px rgba(198,163,92,.35)}
+.enter-btn svg{width:11px;height:11px}
+
+#main{display:none}
+#main.show{display:block}
+
+/* MARQUEE TRACK (FIXED) */
+.marquee{width:100%;overflow:hidden;background:var(--green);color:#f7f2e7;padding:12px 0;white-space:nowrap;box-shadow:inset 0 0 10px rgba(0,0,0,0.2)}
+.marquee-track{display:inline-block;animation:marquee 22s linear infinite}
+.marquee-track span{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.25em;padding-right:30px}
+@keyframes marquee{0%{transform:translateX(0%)}100%{transform:translateX(-50%)}}
+
+/* COUNTDOWN TIMER (FIXED) */
+.countdown-section{background:var(--bg2);padding:40px 20px;text-align:center;border-bottom:1px solid var(--rule)}
+.countdown-title{font-family:'Cinzel',serif;letter-spacing:.3em;font-size:11px;color:var(--gold);margin-bottom:20px}
+.timer{display:flex;justify-content:center;gap:15px;max-width:400px;margin:0 auto}
+.time-box{background:#fff;border:1px solid var(--cardborder);padding:12px 16px;border-radius:8px;min-width:70px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.time-box span{font-family:'Italiana',serif;font-size:28px;color:var(--green);display:block;line-height:1}
+.time-box p{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.2em;color:var(--muted);margin-top:6px}
+
+/* SECTION HEADINGS */
+.section-eyebrow{font-family:'Cinzel',serif;letter-spacing:.42em;font-size:9.5px;color:var(--gold);margin-bottom:14px;text-align:center}
+.section-title{font-family:'Italiana',serif;font-size:clamp(36px,9vw,54px);color:var(--ink);margin-bottom:30px;line-height:1.1;text-align:center}
+.divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:44px 0 10px}
+.divider span{flex:1;height:1px;background:var(--rule);max-width:76px}
+.divider .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+/* SECTIONS */
+.invite{background:var(--bg);padding:70px 28px 50px;text-align:center;border-bottom:1px solid var(--rule)}
+.invite-names{font-family:'Italiana',serif;font-size:clamp(44px,11vw,80px);line-height:.9;color:var(--ink);margin-bottom:24px}
+.invite-names .amp{color:var(--gold);font-family:'Playfair Display',serif;font-style:italic;font-size:.5em;display:block;margin:6px 0}
+.invite-body p{font-size:18px;font-weight:600;line-height:1.8;color:var(--ink);margin-bottom:12px;font-style:italic}
+
+.details{background:var(--bg2);padding:60px 24px;border-bottom:1px solid var(--rule)}
+.event-card{background:#fff;border:1px solid var(--cardborder);border-radius:12px;padding:24px;max-width:520px;margin:0 auto;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.event-title{font-family:'Cinzel',serif;letter-spacing:.26em;font-size:12px;color:var(--green);margin-bottom:16px;font-weight:600}
+.event-row{margin-bottom:12px}
+.row-label{font-family:'Cinzel',serif;letter-spacing:.2em;font-size:8.5px;color:var(--gold)}
+.row-value{font-family:'Italiana',serif;font-size:20px;color:var(--ink)}
+
+/* RSVP FORM */
+.rsvp{background:var(--bg);padding:60px 24px;border-bottom:1px solid var(--rule)}
+.rsvp-form{background:#fff;border:1px solid var(--cardborder);border-radius:10px;padding:26px 20px;max-width:500px;margin:0 auto}
+.input, .textarea{width:100%;padding:12px;border:1px solid var(--cardborder);border-radius:6px;background:#fff;font-family:'Cormorant Garamond',serif;font-size:17.5px;color:var(--ink);outline:none;margin-bottom:14px}
+.submit-btn{width:100%;padding:15px;background:var(--green);color:#f7f2e7;border:none;border-radius:4px;font-family:'Cinzel',serif;letter-spacing:.25em;font-size:11px;cursor:pointer;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px}
+
+/* CONTACT & FOOTER */
+.contact{background:var(--bg);padding:56px 24px 38px;text-align:center}
+.contact-grid{display:flex;flex-direction:column;gap:12px;max-width:320px;margin:20px auto 0}
+.cbtn{padding:12px;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Cinzel',serif;letter-spacing:.16em;font-size:10px;border:1.5px solid var(--green);color:var(--green)}
+
+.footer{background:#22261a;padding:30px 24px;text-align:center;color:#f7f2e7}
+.footer .couple-initials{font-family:'Cinzel',serif;letter-spacing:.55em;font-size:12px;color:var(--gold2);margin-bottom:12px}
+
+/* MUSIC BUTTON */
+#bgmBtn{position:fixed;bottom:22px;right:18px;z-index:9000;width:46px;height:46px;border-radius:50%;background:rgba(247,242,231,.95);border:1.5px solid rgba(66,92,57,.4);box-shadow:0 2px 16px rgba(0,0,0,.16);display:flex;align-items:center;justify-content:center;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="travel-dots">
+  <div class="travel-dot"></div><div class="travel-dot"></div><div class="travel-dot"></div>
+</div>
+
+<!-- LANDING -->
+<div id="landing">
+  <div class="landing-greet">— WITH JOYFUL HEARTS —</div>
+  <h1 class="landing-names">Ranganathan<span class="amp">&amp;</span>Megha</h1>
+  <p class="landing-tagline">Two souls, one journey, held together by God's grace.</p>
+  <div class="landing-date">13 SEPTEMBER 2026</div>
+  <button class="enter-btn" onclick="openInvite()">
+    OPEN INVITATION
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+
+  <!-- INVITE SECTION -->
+  <section class="invite">
+    <span class="section-eyebrow">— RECEPTION INVITATION —</span>
+    <h2 class="invite-names">Ranganathan<span class="amp">&amp;</span>Megha</h2>
+    <div class="invite-body">
+      <p>Love brought us together, but your presence makes it a celebration. Come and fill our room with your warmth.</p>
+      <p>அன்பின் பந்தத்தில் இணைந்து, புதியதொரு வாழ்க்கைப் பயணத்தைத் தொடங்கும் எங்களை வாழ்த்த வருகை தாருங்கள்.</p>
+    </div>
+    <div class="divider"><span></span><div class="dot"></div><span></span></div>
+  </section>
+
+  <!-- MARQUEE BANNER -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>RANGANATHAN & MEGHA ✦ 13 Sept 2026 ✦ Hotel Vijai Paradise ✦ RANGANATHAN & MEGHA ✦ 13 Sept 2026 ✦ Hotel Vijai Paradise ✦</span>
+      <span>RANGANATHAN & MEGHA ✦ 13 Sept 2026 ✦ Hotel Vijai Paradise ✦ RANGANATHAN & MEGHA ✦ 13 Sept 2026 ✦ Hotel Vijai Paradise ✦</span>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN SECTION -->
+  <section class="countdown-section">
+    <div class="countdown-title">COUNTING DOWN TO THE BIG DAY</div>
+    <div id="timer" class="timer">
+      <div class="time-box"><span id="days">00</span><p>Days</p></div>
+      <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+      <div class="time-box"><span id="mins">00</span><p>Mins</p></div>
+      <div class="time-box"><span id="secs">00</span><p>Secs</p></div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="details">
+    <div class="section-eyebrow">— THE OCCASION —</div>
+    <h2 class="section-title">Join Us</h2>
+    <div class="event-card">
+      <div class="event-title">RECEPTION</div>
+      <div class="event-row">
+        <div class="row-label">DATE &amp; TIME</div>
+        <div class="row-value">Sunday, 13 Sept 2026</div>
+        <p style="font-size: 15px; color: var(--muted); font-style: italic;">6:00 PM onwards</p>
+      </div>
+      <div class="event-row" style="margin-top: 15px;">
+        <div class="row-label">VENUE</div>
+        <div class="row-value">Hotel Vijai Paradise</div>
+        <p style="font-size: 15px; color: var(--muted); font-style: italic;">NSR Road, Saibaba Colony, Coimbatore, Tamil Nadu</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP TO WHATSAPP -->
+  <section class="rsvp">
+    <div class="section-eyebrow">— RSVP —</div>
+    <h2 class="section-title">Will You Attend?</h2>
+    <div class="rsvp-form">
+      <input class="input" id="guestName" placeholder="Your Full Name *" required />
+      <select class="input" id="attendance">
+        <option value="Joyfully Accepts">Joyfully Accepts (Will Attend)</option>
+        <option value="Regretfully Declines">Regretfully Declines</option>
+      </select>
+      <textarea class="textarea" id="guestMsg" placeholder="Warm wishes or note for the couple..."></textarea>
+      <button class="submit-btn" onclick="sendWhatsappRSVP()">
+        SEND RSVP VIA WHATSAPP
+      </button>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="section-eyebrow">— GET IN TOUCH —</div>
+    <h3 style="font-family:'Italiana',serif; font-size:24px;">Questions?</h3>
+    <div class="contact-grid">
+      <a class="cbtn" href="https://wa.me/918219962800" target="_blank">Ranganathan: +91 8219962800</a>
+      <a class="cbtn" href="tel:+917902870764">Megha: +91 79028 70764</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="couple-initials">R &nbsp;·&nbsp; M</div>
+    <p style="font-family:'Italiana',serif; font-style:italic;">With love &amp; gratitude — Ranganathan &amp; Megha</p>
+  </footer>
+
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<button id="bgmBtn" onclick="toggleAudio()">
+  <svg id="bgmIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#425c39" stroke-width="2">
+    <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+  </svg>
+</button>
+<!-- Place music.mp3 in the same folder -->
+<audio id="bgmAudio" loop src="music.mp3"></audio>
+
+<script>
+// 1. OPEN INVITATION
+function openInvite(){
+  document.getElementById('landing').classList.add('gone');
+  document.getElementById('main').classList.add('show');
+  document.body.style.overflow = 'auto';
+  
+  // Try playing music upon opening invitation
+  var audio = document.getElementById('bgmAudio');
+  if(audio) audio.play().catch(function(){ console.log("Autoplay blocked by browser"); });
+}
+
+// 2. COUNTDOWN TIMER LOGIC
+var targetDate = new Date("September 13, 2026 18:00:00").getTime();
+
+setInterval(function() {
+  var now = new Date().getTime();
+  var diff = targetDate - now;
+
+  if (diff > 0) {
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+    document.getElementById("mins").innerText = mins < 10 ? "0" + mins : mins;
+    document.getElementById("secs").innerText = secs < 10 ? "0" + secs : secs;
+  }
+}, 1000);
+
+// 3. WHATSAPP NOTIFICATION FOR RSVP
+function sendWhatsappRSVP() {
+  var name = document.getElementById('guestName').value.trim();
+  var attendance = document.getElementById('attendance').value;
+  var msg = document.getElementById('guestMsg').value.trim();
+
+  if (!name) {
+    alert("Please enter your name.");
+    return;
+  }
+
+  var phone = "918219962800"; // Ranganathan's WhatsApp Number
+  var text = "Hello Ranganathan & Megha,%0A%0A" +
+             "*New RSVP Received!*%0A" +
+             "👤 *Name:* " + encodeURIComponent(name) + "%0A" +
+             "📌 *Status:* " + encodeURIComponent(attendance) + "%0A" +
+             "💬 *Message:* " + encodeURIComponent(msg || "No message attached");
+
+  window.open("https://wa.me/" + phone + "?text=" + text, '_blank');
+}
+
+// 4. MUSIC TOGGLE CONTROLLER
+function toggleAudio() {
+  var audio = document.getElementById('bgmAudio');
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
+</script>
+</body>
+</html>
