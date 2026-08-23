@@ -1,12 +1,12 @@
 # Ranganathan & Megha — Reception Invitation
 
-A static GitHub Pages wedding invitation with a moderated, persistent Wishes Wall.
+A static GitHub Pages wedding invitation with a persistent Wishes Wall and admin-controlled approval mode.
 
 ## How wishes work
 
 1. A guest submits a name and message on `index.html`.
-2. Supabase saves it as `pending`; it is not public yet.
-3. An authorized account signs in at `admin.html` and approves or rejects it.
+2. Supabase checks the protected `wish_settings` row. New wishes become `approved` immediately when auto-approval is on, or `pending` when it is off.
+3. An authorized account signs in at `admin.html` to change the auto-approval setting and moderate any wish.
 4. Only approved wishes are returned to visitors and shown on the invitation.
 
 The site remains static. Supabase provides the database, authentication, and Row Level Security that separates public access from moderation access.

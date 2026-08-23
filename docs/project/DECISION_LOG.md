@@ -37,3 +37,11 @@
 **Decision:** Add a compact date, venue, and Directions panel immediately below the opening invitation copy while retaining the cover action and complete event card.
 
 **Why:** Guests reading the main invitation should see the essential logistics before reaching the countdown and later content, without losing the detailed event section farther down the page.
+
+## 2026-08-23 — Make auto-approval an admin-controlled database setting
+
+**Decision:** Store an `auto_approve` flag in a singleton `wish_settings` row. A security-definer insert trigger reads the flag and forces each new wish to `approved` or `pending`. Only allow-listed authenticated admins can read or update the setting.
+
+**Why:** A browser-side toggle or client-supplied status could be bypassed. Keeping the choice in the database preserves the RLS security boundary while allowing the couple to change behavior without editing or redeploying the website.
+
+**Consequences:** The default remains off. Enabling the setting affects only future submissions; existing pending wishes remain pending until an admin moderates them.

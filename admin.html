@@ -46,9 +46,21 @@ h1{font-family:'Italiana',serif;font-size:clamp(40px,8vw,58px);font-weight:400;l
 .meta{color:var(--muted);font-size:14px}
 .notice{min-height:26px;color:var(--muted);font-style:italic}
 .notice.error{color:var(--danger)}
+.setting-card{display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:20px 22px;margin:30px 0 8px}
+.setting-title{font-family:'Italiana',serif;font-size:25px;line-height:1.1;margin:0 0 5px}
+.setting-description{color:var(--muted);font-size:15px;margin:0;max-width:54ch}
+.setting-status{margin-top:7px;min-height:22px;font-size:14px}
+.switch-control{position:relative;display:inline-flex;flex-shrink:0}
+.switch-control input{position:absolute;opacity:0;pointer-events:none}
+.switch-track{width:58px;height:32px;border-radius:99px;background:#c9c4b8;border:1px solid rgba(42,42,28,.12);position:relative;transition:background .2s,opacity .2s;cursor:pointer}
+.switch-track::after{content:'';position:absolute;width:24px;height:24px;left:3px;top:3px;border-radius:50%;background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.22);transition:transform .2s}
+.switch-control input:checked+.switch-track{background:var(--green)}
+.switch-control input:checked+.switch-track::after{transform:translateX(26px)}
+.switch-control input:focus-visible+.switch-track{outline:3px solid rgba(163,129,47,.28);outline-offset:3px}
+.switch-control input:disabled+.switch-track{opacity:.55;cursor:wait}
 .empty{padding:32px;text-align:center;border:1px dashed var(--border);border-radius:10px;color:var(--muted);font-style:italic}
 .hidden{display:none!important}
-@media(max-width:520px){.btn{flex:1}.tabs .btn{flex:1 1 42%}}
+@media(max-width:520px){.btn{flex:1}.tabs .btn{flex:1 1 42%}.setting-card{align-items:flex-start}.setting-description{font-size:14px}}
 </style>
 </head>
 <body>
@@ -57,7 +69,7 @@ h1{font-family:'Italiana',serif;font-size:clamp(40px,8vw,58px);font-weight:400;l
     <div>
       <div class="eyebrow">PRIVATE MODERATION</div>
       <h1>Wishes Admin</h1>
-      <p class="subtitle">Approve a wish before it appears on the invitation.</p>
+      <p class="subtitle">Choose automatic approval or review each wish yourself.</p>
     </div>
     <div id="sessionBox" class="session hidden">
       <span id="sessionEmail"></span>
@@ -81,6 +93,17 @@ h1{font-family:'Italiana',serif;font-size:clamp(40px,8vw,58px);font-weight:400;l
   </section>
 
   <section id="dashboard" class="hidden" aria-label="Wish moderation dashboard">
+    <section class="setting-card" aria-labelledby="autoApproveTitle">
+      <div>
+        <h2 class="setting-title" id="autoApproveTitle">Auto-approve new wishes</h2>
+        <p class="setting-description" id="autoApproveDescription">When enabled, new wishes appear publicly immediately. Existing pending wishes are unchanged.</p>
+        <div class="notice setting-status" id="settingsStatus" role="status" aria-live="polite"></div>
+      </div>
+      <label class="switch-control">
+        <input id="autoApproveToggle" type="checkbox" role="switch" aria-label="Auto-approve new wishes" aria-describedby="autoApproveDescription" disabled>
+        <span class="switch-track" aria-hidden="true"></span>
+      </label>
+    </section>
     <nav class="tabs" aria-label="Wish status filters">
       <button class="btn tab active" type="button" data-status="pending">PENDING</button>
       <button class="btn tab" type="button" data-status="approved">APPROVED</button>
@@ -117,6 +140,8 @@ var sessionBox = document.getElementById('sessionBox');
 var loginStatus = document.getElementById('loginStatus');
 var adminStatus = document.getElementById('adminStatus');
 var wishGrid = document.getElementById('wishGrid');
+var autoApproveToggle = document.getElementById('autoApproveToggle');
+var settingsStatus = document.getElementById('settingsStatus');
 
 function setNotice(element, message, isError) {
   element.textContent = message;
@@ -127,6 +152,7 @@ function showLogin(message, isError) {
   loginPanel.classList.remove('hidden');
   dashboard.classList.add('hidden');
   sessionBox.classList.add('hidden');
+  autoApproveToggle.disabled = true;
   if (message) setNotice(loginStatus, message, isError);
 }
 
@@ -186,7 +212,7 @@ async function signIn(event) {
     return;
   }
   document.getElementById('password').value = '';
-  if (await verifyAdmin()) await loadWishes();
+  if (await verifyAdmin()) await refreshDashboard();
 }
 
 async function signOut() {
@@ -206,6 +232,60 @@ function actionButton(label, className, action) {
   button.type = 'button';
   button.addEventListener('click', action);
   return button;
+}
+
+function describeAutoApprove(enabled) {
+  return enabled
+    ? 'ON — new wishes appear publicly immediately.'
+    : 'OFF — new wishes wait in Pending for review.';
+}
+
+async function loadWishSettings() {
+  autoApproveToggle.disabled = true;
+  setNotice(settingsStatus, 'Loading approval setting…', false);
+
+  var result = await db
+    .from('wish_settings')
+    .select('auto_approve')
+    .eq('id', 1)
+    .single();
+
+  if (result.error) {
+    setNotice(settingsStatus, 'Unable to load this setting. Run the latest setup.sql in Supabase.', true);
+    return;
+  }
+
+  autoApproveToggle.checked = Boolean(result.data.auto_approve);
+  autoApproveToggle.disabled = false;
+  setNotice(settingsStatus, describeAutoApprove(autoApproveToggle.checked), false);
+}
+
+async function saveAutoApprove() {
+  var requestedValue = autoApproveToggle.checked;
+  autoApproveToggle.disabled = true;
+  setNotice(settingsStatus, 'Saving approval setting…', false);
+
+  var result = await db
+    .from('wish_settings')
+    .update({auto_approve:requestedValue})
+    .eq('id', 1)
+    .select('auto_approve')
+    .single();
+
+  if (result.error) {
+    autoApproveToggle.checked = !requestedValue;
+    autoApproveToggle.disabled = false;
+    setNotice(settingsStatus, 'Unable to save this setting: ' + result.error.message, true);
+    return;
+  }
+
+  autoApproveToggle.checked = Boolean(result.data.auto_approve);
+  autoApproveToggle.disabled = false;
+  setNotice(settingsStatus, describeAutoApprove(autoApproveToggle.checked), false);
+}
+
+async function refreshDashboard() {
+  await Promise.all([loadWishSettings(), loadWishes()]);
 }
 
 function makeWishCard(wish) {
@@ -288,7 +368,8 @@ async function deleteWish(id, name) {
 
 document.getElementById('loginForm').addEventListener('submit', signIn);
 document.getElementById('logoutButton').addEventListener('click', signOut);
-document.getElementById('refreshButton').addEventListener('click', loadWishes);
+document.getElementById('refreshButton').addEventListener('click', refreshDashboard);
+autoApproveToggle.addEventListener('change', saveAutoApprove);
 document.querySelectorAll('.tab').forEach(function(tab) {
   tab.addEventListener('click', function() {
     currentStatus = tab.dataset.status;
@@ -299,7 +380,7 @@ document.querySelectorAll('.tab').forEach(function(tab) {
 });
 
 (async function initialiseAdmin() {
-  if (await verifyAdmin()) await loadWishes();
+  if (await verifyAdmin()) await refreshDashboard();
 })();
 </script>
 </body>

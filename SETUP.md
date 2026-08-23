@@ -8,7 +8,7 @@ The HTML files are complete, but persistence will stay disabled until a Supabase
 2. Open its SQL editor.
 3. Paste and run the complete contents of `setup.sql`.
 
-The script creates `wishes` and `wish_admins`, enables Row Level Security, and installs the policies used by the public and admin pages.
+The script creates `wishes`, `wish_admins`, and the singleton `wish_settings` row, enables Row Level Security, and installs the policies and triggers used by the public and admin pages. It is safe to run the complete script again when upgrading an existing project.
 
 ## 2. Create and authorize the admin
 
@@ -59,18 +59,27 @@ Push these files to the repository's `main` branch and keep GitHub Pages configu
 
 The `noindex` directive keeps normal search engines from listing the admin page, but it is not the security boundary. Supabase Authentication and RLS are the security boundary.
 
-## 5. Verify the complete workflow
+## 5. Choose the approval mode
+
+1. Open `admin.html` and sign in with the authorized admin account.
+2. Use **Auto-approve new wishes** at the top of the dashboard.
+3. Leave it off when every wish should wait in Pending. Turn it on when new wishes should appear publicly immediately.
+
+Changing the switch affects only wishes submitted afterward. Existing pending wishes are not automatically published.
+
+## 6. Verify the complete workflow
 
 Use a private/incognito window for the public checks.
 
-1. Open the invitation and submit a test wish.
+1. Sign in to `admin.html`, turn auto-approval off, and submit a test wish from the invitation.
 2. Refresh the invitation. The pending wish must not appear.
-3. Open `admin.html` and confirm that invalid or non-admin accounts cannot enter.
-4. Sign in with the authorized admin and approve the test wish.
-5. Refresh the invitation in the private window. The approved wish must appear.
-6. Reject or move the wish back to pending. It must disappear from the public page.
-7. Submit `<img src=x onerror=alert(1)>` as a test message. After approval, it must appear as harmless text—not execute.
-8. Confirm an anonymous browser cannot update or delete a row through the Supabase API.
+3. Confirm that invalid or non-admin accounts cannot enter the dashboard or change `wish_settings`.
+4. Approve the pending test wish. Refresh the invitation and confirm it appears.
+5. Turn auto-approval on and submit a second test wish. It must appear on the invitation immediately and in the Approved admin tab.
+6. Turn auto-approval off and confirm the earlier pending/approved rows do not change state automatically.
+7. Reject or move an approved wish back to pending. It must disappear from the public page.
+8. Submit `<img src=x onerror=alert(1)>` as a test message. After approval, it must appear as harmless text—not execute.
+9. Confirm an anonymous browser cannot update or delete a wish or change `wish_settings` through the Supabase API.
 
 ## Moderation states
 

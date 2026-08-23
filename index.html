@@ -507,7 +507,7 @@ async function submitWish(event) {
   setWishStatus('', '');
   if (honeypot) {
     form.reset();
-    setWishStatus('Thank you! Your wish was sent for review.', 'success');
+    setWishStatus('Thank you! Your wish has been received.', 'success');
     return;
   }
   if (!name || !message) {
@@ -532,7 +532,8 @@ async function submitWish(event) {
   }
 
   form.reset();
-  setWishStatus('Thank you! Your wish was sent for approval and will appear here once approved.', 'success');
+  setWishStatus('Thank you! Your wish has been received.', 'success');
+  await loadApprovedWishes();
 }
 
 // 4. GOOGLE CALENDAR FUNCTION
