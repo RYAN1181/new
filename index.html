@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<title>Ranganathan & Megha — Reception Invitation · 16 September 2026</title>
-<meta name="description" content="Together with their families, Ranganathan Thetharappan & Megha Roy joyfully invite you to celebrate their Reception — 16 September 2026, St George Forona Church Parish Hall, Chempanthotty, Kannur"/>
-<meta name="theme-color" content="#425c39"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Ranganathan &amp; Megha — Reception Invitation · 16 September 2026</title>
+<meta name="description" content="Together with their families, Ranganathan Thetharappan &amp; Megha Roy joyfully invite you to celebrate their Reception — 16 September 2026, St George Forona Church Parish Hall, Chempanthotty, Kannur">
+<meta name="theme-color" content="#425c39">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,8 +45,13 @@ a{color:inherit;text-decoration:none}
 .landing-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:#c9c0a6;margin-bottom:20px;max-width:32ch}
 .landing-date{font-family:'Cinzel',serif;letter-spacing:.3em;font-size:clamp(16px,4vw,20px);color:var(--gold2);margin-bottom:32px;font-weight:600}
 
-.enter-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 40px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#16230f;border:none;font-family:'Cinzel',serif;letter-spacing:.28em;font-size:10.5px;cursor:pointer;border-radius:2px;box-shadow:0 10px 30px rgba(198,163,92,.35)}
-.enter-btn svg{width:11px;height:11px}
+.landing-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.enter-btn,.cover-directions-btn{min-height:47px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 30px;font-family:'Cinzel',serif;letter-spacing:.22em;font-size:10px;cursor:pointer;border-radius:2px;font-weight:600}
+.enter-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#16230f;border:none;box-shadow:0 10px 30px rgba(198,163,92,.35)}
+.cover-directions-btn{color:#f5efe0;border:1px solid rgba(245,239,224,.65);background:rgba(12,20,8,.32);backdrop-filter:blur(5px)}
+.cover-directions-btn:hover{border-color:var(--gold2);color:var(--gold2)}
+.enter-btn svg,.cover-directions-btn svg{width:12px;height:12px;flex-shrink:0}
+@media(max-width:420px){.landing-actions{width:100%;max-width:280px}.enter-btn,.cover-directions-btn{width:100%}}
 
 #main{display:none}
 #main.show{display:block}
@@ -77,6 +82,22 @@ a{color:inherit;text-decoration:none}
 .invite-names{font-family:'Italiana',serif;font-size:clamp(44px,11vw,80px);line-height:.9;color:var(--ink);margin-bottom:24px}
 .invite-names .amp{color:var(--gold);font-family:'Playfair Display',serif;font-style:italic;font-size:.5em;display:block;margin:6px 0}
 .invite-body p{font-size:18px;font-weight:600;line-height:1.8;color:var(--ink);margin-bottom:12px;font-style:italic}
+.invite-details-copy{display:grid;grid-template-columns:minmax(190px,.8fr) minmax(280px,1.3fr) minmax(150px,.55fr);max-width:820px;margin:34px auto 0;border:1px solid var(--cardborder);border-radius:10px;background:rgba(255,255,255,.62);box-shadow:0 4px 18px rgba(0,0,0,.04);overflow:hidden;text-align:left}
+.invite-detail{display:flex;align-items:center;gap:12px;padding:18px 20px}
+.invite-detail+.invite-detail{border-left:1px solid var(--rule)}
+.invite-detail-icon{width:38px;height:38px;border-radius:50%;background:rgba(66,92,57,.08);border:1px solid rgba(66,92,57,.18);color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.invite-detail-icon svg{width:17px;height:17px}
+.invite-detail-label{font-family:'Cinzel',serif;letter-spacing:.23em;font-size:8px;color:var(--gold);margin-bottom:3px}
+.invite-detail-value{font-family:'Italiana',serif;font-size:18px;line-height:1.2;color:var(--ink)}
+.invite-detail-sub{font-size:14px;line-height:1.35;color:var(--muted);font-style:italic;margin-top:3px}
+.invite-directions{display:flex;align-items:center;justify-content:center;gap:9px;padding:18px;background:var(--green);color:#f7f2e7;font-family:'Cinzel',serif;font-size:9px;font-weight:600;letter-spacing:.2em;text-align:center;transition:background .2s}
+.invite-directions:hover{background:var(--green2)}
+.invite-directions svg{width:15px;height:15px;flex-shrink:0}
+@media(max-width:720px){
+  .invite-details-copy{grid-template-columns:1fr;max-width:500px}
+  .invite-detail+.invite-detail{border-left:0;border-top:1px solid var(--rule)}
+  .invite-directions{min-height:54px}
+}
 
 /* COUPLE PROFILE PHOTOS */
 .couple-section{background:var(--bg);padding:60px 24px;border-bottom:1px solid var(--rule);text-align:center}
@@ -87,18 +108,28 @@ a{color:inherit;text-decoration:none}
 .couple-avatar{width:140px;height:140px;border-radius:50%;object-fit:cover;margin:0 auto 16px;border:3px solid var(--gold2);padding:3px;background:var(--bg)}
 .couple-role{font-family:'Cinzel',serif;letter-spacing:.3em;font-size:10px;color:var(--gold);margin-bottom:6px}
 .couple-name{font-family:'Italiana',serif;font-size:26px;color:var(--ink);margin-bottom:8px}
+.couple-family{font-size:15px;color:var(--muted);font-style:italic}
 
 /* SEND YOUR LOVE / WISHES WALL */
 .wishes{background:var(--bg2);padding:60px 24px;border-bottom:1px solid var(--rule)}
 .wish-form{background:#fff;border:1px solid var(--cardborder);border-radius:10px;padding:22px 18px;max-width:500px;margin:0 auto 28px;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.field-label{display:block;font-family:'Cinzel',serif;letter-spacing:.18em;font-size:9px;color:var(--muted);margin:0 0 5px}
 .input, .textarea{width:100%;padding:11px 13px;border:1px solid var(--cardborder);border-radius:6px;background:#fff;font-family:'Cormorant Garamond',serif;font-size:17.5px;color:var(--ink);outline:none;margin-bottom:12px}
-.textarea{min-height:90px;resize:none}
+.input:focus,.textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(163,129,47,.12)}
+.textarea{min-height:100px;resize:vertical}
+.honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 .submit-btn{width:100%;padding:14px;background:var(--green);color:#f7f2e7;border:none;border-radius:4px;font-family:'Cinzel',serif;letter-spacing:.25em;font-size:10.5px;cursor:pointer;font-weight:500}
 .submit-btn:hover{background:var(--green2)}
+.submit-btn:disabled{opacity:.65;cursor:wait}
+.form-status{max-width:500px;min-height:26px;margin:-14px auto 24px;text-align:center;font-size:16px;font-style:italic;color:var(--muted)}
+.form-status.success{color:var(--green)}
+.form-status.error{color:#8f2f2f}
+.approved-title{font-family:'Cinzel',serif;letter-spacing:.24em;font-size:9px;color:var(--gold);text-align:center;margin:0 auto 16px}
 .wish-list{max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
 .wish-card{background:#fff;border:1px solid var(--cardborder);border-radius:8px;padding:16px;box-shadow:0 1px 6px rgba(0,0,0,0.03)}
 .wish-card-name{font-family:'Italiana',serif;font-size:20px;color:var(--gold);margin-bottom:4px}
-.wish-card-msg{font-size:17px;font-weight:600;color:var(--muted);font-style:italic;line-height:1.6}
+.wish-card-msg{font-size:17px;font-weight:600;color:var(--muted);font-style:italic;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.empty-wishes{text-align:center;color:var(--muted);font-style:italic;padding:18px}
 
 /* GALLERY */
 .gallery{background:var(--bg);padding:60px 24px;border-bottom:1px solid var(--rule)}
@@ -130,11 +161,13 @@ a{color:inherit;text-decoration:none}
 .btn svg{width:13px;height:13px}
 
 .contact{background:var(--bg);padding:56px 24px 38px;text-align:center}
+.contact-title{font-family:'Italiana',serif;font-size:24px}
 .contact-grid{display:flex;flex-direction:column;gap:12px;max-width:320px;margin:20px auto 0}
 .cbtn{padding:12px;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Cinzel',serif;letter-spacing:.16em;font-size:10px;border:1.5px solid var(--green);color:var(--green)}
 
 .footer{background:#22261a;padding:30px 24px;text-align:center;color:#f7f2e7}
 .footer .couple-initials{font-family:'Cinzel',serif;letter-spacing:.55em;font-size:12px;color:var(--gold2);margin-bottom:12px}
+.footer-message{font-family:'Italiana',serif;font-style:italic}
 
 /* MUSIC BUTTON */
 #bgmBtn{position:fixed;bottom:22px;right:18px;z-index:9000;width:46px;height:46px;border-radius:50%;background:rgba(247,242,231,.95);border:1.5px solid rgba(66,92,57,.4);box-shadow:0 2px 16px rgba(0,0,0,.16);display:flex;align-items:center;justify-content:center;cursor:pointer}
@@ -151,10 +184,16 @@ a{color:inherit;text-decoration:none}
   <h1 class="landing-names">Ranganathan<span class="amp">&amp;</span>Megha</h1>
   <p class="landing-tagline">Two souls, one journey, held together by God's grace.</p>
   <div class="landing-date">16 SEPTEMBER 2026</div>
-  <button class="enter-btn" onclick="openInvite()">
-    OPEN INVITATION
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </button>
+  <div class="landing-actions">
+    <button class="enter-btn" type="button" onclick="openInvite()">
+      OPEN INVITATION
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+    <a class="cover-directions-btn" href="https://www.google.com/maps/dir//St.+George+Syro-Malabar+Church,+Chempanthotty,+3FRR%2BHH8,+Valakkai+-Chuzali,+Chempanthotty+Bridge,+Chempanthotty,+Nediyanga,+Kerala+670631/@13.2086726,77.7115729,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba447ae27aaca47:0xc01789773a167f0e!2m2!1d75.4925489!2d12.0903647?entry=ttu&amp;g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      DIRECTIONS
+    </a>
+  </div>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -168,14 +207,40 @@ a{color:inherit;text-decoration:none}
       <p>Love brought us together, but your presence makes it a celebration. Come and fill our room with your warmth.</p>
       <p>அன்பின் பந்தத்தில் இணைந்து, புதியதொரு வாழ்க்கைப் பயணத்தைத் தொடங்கும் எங்களை வாழ்த்த வருகை தாருங்கள்.</p>
     </div>
+    <div class="invite-details-copy" role="group" aria-label="Reception details">
+      <div class="invite-detail">
+        <div class="invite-detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <div>
+          <div class="invite-detail-label">DATE &amp; TIME</div>
+          <div class="invite-detail-value">Wednesday, 16 Sept 2026</div>
+          <div class="invite-detail-sub">6:00 PM onwards</div>
+        </div>
+      </div>
+      <div class="invite-detail">
+        <div class="invite-detail-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="invite-detail-label">VENUE</div>
+          <div class="invite-detail-value">St George Forona Church Parish Hall</div>
+          <div class="invite-detail-sub">Chempanthotty, Kannur, Kerala</div>
+        </div>
+      </div>
+      <a class="invite-directions" href="https://www.google.com/maps/dir//St.+George+Syro-Malabar+Church,+Chempanthotty,+3FRR%2BHH8,+Valakkai+-Chuzali,+Chempanthotty+Bridge,+Chempanthotty,+Nediyanga,+Kerala+670631/@13.2086726,77.7115729,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba447ae27aaca47:0xc01789773a167f0e!2m2!1d75.4925489!2d12.0903647?entry=ttu&amp;g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        DIRECTIONS
+      </a>
+    </div>
     <div class="divider"><span></span><div class="dot"></div><span></span></div>
   </section>
 
   <!-- MARQUEE BANNER -->
   <div class="marquee">
     <div class="marquee-track">
-      <span>RANGANATHAN & MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦ RANGANATHAN & MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦</span>
-      <span>RANGANATHAN & MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦ RANGANATHAN & MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦</span>
+      <span>RANGANATHAN &amp; MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦ RANGANATHAN &amp; MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦</span>
+      <span>RANGANATHAN &amp; MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦ RANGANATHAN &amp; MEGHA ✦ 16 Sept 2026 ✦ St George Forona Church Parish Hall ✦</span>
     </div>
   </div>
 
@@ -195,13 +260,13 @@ a{color:inherit;text-decoration:none}
     <div class="section-eyebrow">— THE COUPLE —</div>
     <h2 class="section-title">Groom &amp; Bride</h2>
     <div class="couple-grid">
-      
+
       <!-- GROOM CARD -->
       <div class="couple-card">
         <img class="couple-avatar" src="ranga.jpg" alt="Groom" onerror="this.src='ranga.jpg'">
         <div class="couple-role">GROOM</div>
         <div class="couple-name">Ranganathan Thetharappan</div>
-        <p style="font-size: 15px; color: var(--muted); font-style: italic;">
+        <p class="couple-family">
           S/o Thetharappan S S &amp; Indira Thetharappan<br>Coimbatore, Tamil Nadu
         </p>
       </div>
@@ -211,7 +276,7 @@ a{color:inherit;text-decoration:none}
         <img class="couple-avatar" src="megha.jpg" alt="Bride" onerror="this.src='megha.jpg'">
         <div class="couple-role">BRIDE</div>
         <div class="couple-name">Megha Roy</div>
-        <p style="font-size: 15px; color: var(--muted); font-style: italic;">
+        <p class="couple-family">
           D/o Roy Jacob &amp; Shiny Abraham<br>Kannur, Kerala
         </p>
       </div>
@@ -223,17 +288,21 @@ a{color:inherit;text-decoration:none}
   <section class="wishes">
     <div class="section-eyebrow">— SEND YOUR LOVE —</div>
     <h2 class="section-title">Wishes Wall</h2>
-    <div class="wish-form">
-      <input class="input" id="wisherName" placeholder="Your Name" />
-      <textarea class="textarea" id="wisherMsg" placeholder="Write a blessing or warm wish for Ranganathan &amp; Megha…"></textarea>
-      <button class="submit-btn" onclick="addWish()">SEND WISH ✦</button>
-    </div>
-    
-    <div class="wish-list" id="wishList">
-      <div class="wish-card">
-        <div class="wish-card-name">Arun & Family</div>
-        <div class="wish-card-msg">Wishing Ranganathan and Megha a lifetime of love, happiness, and God's abundant blessings!</div>
+    <form class="wish-form" id="wishForm">
+      <label class="field-label" for="wisherName">YOUR NAME</label>
+      <input class="input" id="wisherName" name="name" type="text" maxlength="80" autocomplete="name" required placeholder="Your Name">
+      <label class="field-label" for="wisherMsg">YOUR MESSAGE</label>
+      <textarea class="textarea" id="wisherMsg" name="message" maxlength="1000" required placeholder="Write a blessing or warm wish for Ranganathan &amp; Megha…"></textarea>
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
       </div>
+      <button class="submit-btn" id="wishSubmit" type="submit">SEND WISH ✦</button>
+    </form>
+    <div id="wishStatus" class="form-status" role="status" aria-live="polite"></div>
+    <div class="approved-title">— WISHES FROM OUR LOVED ONES —</div>
+    <div class="wish-list" id="wishList" aria-live="polite">
+      <div class="empty-wishes">Loading approved wishes…</div>
     </div>
   </section>
 
@@ -256,8 +325,8 @@ a{color:inherit;text-decoration:none}
 
   <!-- EVENT 01 — RECEPTION (FIXED WITH WORKING BUTTONS) -->
   <section class="details">
-    <div class="section-eyebrow" style="text-align:center">— THE OCCASION —</div>
-    <h2 class="section-title" style="text-align:center">Join Us</h2>
+    <div class="section-eyebrow">— THE OCCASION —</div>
+    <h2 class="section-title">Join Us</h2>
 
     <div class="event-card">
       <div class="event-head">
@@ -270,7 +339,7 @@ a{color:inherit;text-decoration:none}
         </div>
         <div class="row-body">
           <div class="row-label">DATE &amp; TIME</div>
-          <div class="row-value">Sunday, 16 Sept 2026</div>
+          <div class="row-value">Wednesday, 16 Sept 2026</div>
           <div class="row-sub">6:00 PM onwards </div>
         </div>
       </div>
@@ -285,10 +354,7 @@ a{color:inherit;text-decoration:none}
         </div>
       </div>
       <div class="event-actions">
-        <a class="btn btn-primary" href="https://www.google.com/maps/dir//St.+George+Syro-Malabar+Church,+Chempanthotty,+3FRR%2BHH8,+Valakkai+-Chuzali,+Chempanthotty+Bridge,+Chempanthotty,+Nediyanga,+Kerala+670631/@13.2086726,77.7115729,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3ba447ae27aaca47:0xc01789773a167f0e!2m2!1d75.4925489!2d12.0903647?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>DIRECTIONS
-        </a>
-        <button class="btn btn-ghost" onclick="addToCal('Reception — Ranganathan &amp; Megha','2026-09-16T18:00','2026-09-16T21:00','St George Forona Church Parish Hall, Chempanthotty, Kannur, Kerala')">
+        <button class="btn btn-ghost" type="button" onclick="addToCal('Reception — Ranganathan &amp; Megha','20260916T123000Z','20260916T153000Z','St George Forona Church Parish Hall, Chempanthotty, Kannur, Kerala')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>CALENDAR
         </button>
       </div>
@@ -298,29 +364,46 @@ a{color:inherit;text-decoration:none}
   <!-- CONTACT -->
   <section class="contact">
     <div class="section-eyebrow">— GET IN TOUCH —</div>
-    <h3 style="font-family:'Italiana',serif; font-size:24px;">Questions?</h3>
+    <h3 class="contact-title">Questions?</h3>
     <div class="contact-grid">
-      <a class="cbtn" href="https://wa.me/918219962800" target="_blank">Ranganathan: +91 8219962800</a>
-      <a class="cbtn" href="tel:+917902870764">Megha: +91 79028 70764</a>
+      <a class="cbtn" href="https://wa.me/918219962800" target="_blank" rel="noopener">Ranganathan: +91&nbsp;82199&nbsp;62800</a>
+      <a class="cbtn" href="tel:+917902870764">Megha:&nbsp;+91&nbsp;79028&nbsp;70764</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="couple-initials">R &nbsp;·&nbsp; M</div>
-    <p style="font-family:'Italiana',serif; font-style:italic;">With love &amp; gratitude — Ranganathan &amp; Megha</p>
+    <p class="footer-message">With love &amp; gratitude — Ranganathan &amp; Megha</p>
   </footer>
 
 </div>
 
 <!-- BACKGROUND MUSIC -->
-<button id="bgmBtn" onclick="toggleAudio()">
+<button id="bgmBtn" type="button" onclick="toggleAudio()" aria-label="Play background music" aria-pressed="false">
   <svg id="bgmIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#425c39" stroke-width="2">
     <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
   </svg>
 </button>
 <audio id="bgmAudio" loop src="music.mp3"></audio>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3/dist/umd/supabase.min.js"></script>
+<script src="supabase-config.js"></script>
 <script>
+'use strict';
+
+var supabaseSettings = window.WEDDING_SUPABASE || {};
+var hasSupabaseConfig = Boolean(
+  window.supabase &&
+  /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(supabaseSettings.url || '') &&
+  supabaseSettings.anonKey &&
+  !supabaseSettings.anonKey.includes('YOUR_')
+);
+var wishesDb = hasSupabaseConfig
+  ? window.supabase.createClient(supabaseSettings.url, supabaseSettings.anonKey, {
+      auth: {persistSession:false, autoRefreshToken:false, detectSessionInUrl:false}
+    })
+  : null;
+
 // 1. OPEN INVITATION
 function openInvite(){
   document.getElementById('landing').classList.add('gone');
@@ -332,66 +415,154 @@ function openInvite(){
 }
 
 // 2. COUNTDOWN TIMER LOGIC
-var targetDate = new Date("September 16, 2026 18:00:00").getTime();
+var targetDate = new Date("2026-09-16T18:00:00+05:30").getTime();
 
-setInterval(function() {
-  var now = new Date().getTime();
-  var diff = targetDate - now;
+function updateCountdown() {
+  var diff = Math.max(0, targetDate - Date.now());
+  var daysLeft = Math.floor(diff / 86400000);
+  var hoursLeft = Math.floor((diff % 86400000) / 3600000);
+  var minsLeft = Math.floor((diff % 3600000) / 60000);
+  var secsLeft = Math.floor((diff % 60000) / 1000);
 
-  if (diff > 0) {
-    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    var secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-    document.getElementById("mins").innerText = mins < 10 ? "0" + mins : mins;
-    document.getElementById("secs").innerText = secs < 10 ? "0" + secs : secs;
-  }
-}, 1000);
+  document.getElementById("days").textContent = String(daysLeft).padStart(2, "0");
+  document.getElementById("hours").textContent = String(hoursLeft).padStart(2, "0");
+  document.getElementById("mins").textContent = String(minsLeft).padStart(2, "0");
+  document.getElementById("secs").textContent = String(secsLeft).padStart(2, "0");
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 // 3. WISHES WALL LOGIC
-function addWish() {
-  var name = document.getElementById('wisherName').value.trim();
-  var msg = document.getElementById('wisherMsg').value.trim();
+function setWishStatus(message, type) {
+  var status = document.getElementById('wishStatus');
+  status.textContent = message;
+  status.className = 'form-status' + (type ? ' ' + type : '');
+}
 
-  if (!name || !msg) {
-    alert("Please enter your name and a wish.");
+function makeWishCard(wish) {
+  var card = document.createElement('article');
+  card.className = 'wish-card';
+
+  var name = document.createElement('div');
+  name.className = 'wish-card-name';
+  name.textContent = wish.name;
+
+  var message = document.createElement('div');
+  message.className = 'wish-card-msg';
+  message.textContent = wish.message;
+
+  card.append(name, message);
+  return card;
+}
+
+async function loadApprovedWishes() {
+  var list = document.getElementById('wishList');
+  if (!wishesDb) {
+    list.replaceChildren();
+    var setupMessage = document.createElement('div');
+    setupMessage.className = 'empty-wishes';
+    setupMessage.textContent = 'The wishes wall is being prepared. Please check back soon.';
+    list.appendChild(setupMessage);
     return;
   }
 
-  var list = document.getElementById('wishList');
-  var newCard = document.createElement('div');
-  newCard.className = 'wish-card';
-  newCard.innerHTML = '<div class="wish-card-name">' + name + '</div>' +
-                      '<div class="wish-card-msg">' + msg + '</div>';
+  var result = await wishesDb
+    .from('wishes')
+    .select('id,name,message,created_at')
+    .eq('status', 'approved')
+    .order('created_at', {ascending:false})
+    .limit(100);
 
-  list.insertBefore(newCard, list.firstChild);
+  list.replaceChildren();
+  if (result.error) {
+    console.error('Unable to load approved wishes:', result.error.message);
+    var errorMessage = document.createElement('div');
+    errorMessage.className = 'empty-wishes';
+    errorMessage.textContent = 'Unable to load wishes right now. Please try again later.';
+    list.appendChild(errorMessage);
+    return;
+  }
 
-  document.getElementById('wisherName').value = '';
-  document.getElementById('wisherMsg').value = '';
+  if (!result.data.length) {
+    var emptyMessage = document.createElement('div');
+    emptyMessage.className = 'empty-wishes';
+    emptyMessage.textContent = 'Approved wishes will appear here.';
+    list.appendChild(emptyMessage);
+    return;
+  }
+
+  result.data.forEach(function(wish) {
+    list.appendChild(makeWishCard(wish));
+  });
+}
+
+async function submitWish(event) {
+  event.preventDefault();
+  var form = event.currentTarget;
+  var name = document.getElementById('wisherName').value.trim();
+  var message = document.getElementById('wisherMsg').value.trim();
+  var honeypot = document.getElementById('website').value;
+  var button = document.getElementById('wishSubmit');
+
+  setWishStatus('', '');
+  if (honeypot) {
+    form.reset();
+    setWishStatus('Thank you! Your wish was sent for review.', 'success');
+    return;
+  }
+  if (!name || !message) {
+    setWishStatus('Please enter your name and a wish.', 'error');
+    return;
+  }
+  if (!wishesDb) {
+    setWishStatus('The wishes wall is not connected yet. Please try again later.', 'error');
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'SENDING…';
+  var result = await wishesDb.from('wishes').insert({name:name, message:message});
+  button.disabled = false;
+  button.textContent = 'SEND WISH ✦';
+
+  if (result.error) {
+    console.error('Unable to submit wish:', result.error.message);
+    setWishStatus('Sorry, your wish could not be sent. Please try again.', 'error');
+    return;
+  }
+
+  form.reset();
+  setWishStatus('Thank you! Your wish was sent for approval and will appear here once approved.', 'success');
 }
 
 // 4. GOOGLE CALENDAR FUNCTION
 function addToCal(title, start, end, loc) {
-  var fmt = function(s) { return s.replace(/[-:]/g, ''); };
   var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
             '&text=' + encodeURIComponent(title) +
-            '&dates=' + fmt(start + '00') + '/' + fmt(end + '00') +
+            '&dates=' + encodeURIComponent(start + '/' + end) +
+            '&ctz=' + encodeURIComponent('Asia/Kolkata') +
             '&location=' + encodeURIComponent(loc);
-  window.open(url, '_blank');
+  window.open(url, '_blank', 'noopener');
 }
 
 // 5. MUSIC TOGGLE CONTROLLER
 function toggleAudio() {
   var audio = document.getElementById('bgmAudio');
+  var button = document.getElementById('bgmBtn');
   if (audio.paused) {
-    audio.play();
+    audio.play().then(function() {
+      button.setAttribute('aria-pressed', 'true');
+      button.setAttribute('aria-label', 'Pause background music');
+    }).catch(function(){});
   } else {
     audio.pause();
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', 'Play background music');
   }
 }
+
+document.getElementById('wishForm').addEventListener('submit', submitWish);
+loadApprovedWishes();
 </script>
 </body>
 </html>

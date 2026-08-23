@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#425c39">
+<title>Wedding Wishes — Private Moderation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:wght@400;600&family=Cinzel:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f2e7;--panel:#fff;--green:#425c39;--green2:#567045;--gold:#a3812f;--ink:#2a2a1c;--muted:#6f6650;--border:rgba(163,129,47,.25);--danger:#8f2f2f;--shadow:0 4px 20px rgba(42,42,28,.07)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.5}
+button,input{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:920px;margin:auto;padding:38px 18px 72px}
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.eyebrow{font-family:'Cinzel',serif;color:var(--gold);font-size:9px;letter-spacing:.3em}
+h1{font-family:'Italiana',serif;font-size:clamp(40px,8vw,58px);font-weight:400;line-height:1;margin:6px 0}
+.subtitle{color:var(--muted);margin:0}
+.panel,.wish{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow)}
+.panel{max-width:560px;padding:24px;margin:30px 0}
+.label{display:block;font-family:'Cinzel',serif;letter-spacing:.16em;font-size:9px;color:var(--muted);margin:14px 0 5px}
+.input{width:100%;padding:12px;border:1px solid var(--border);border-radius:6px;color:var(--ink);outline:0}
+.input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(163,129,47,.12)}
+.actions,.tabs{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.actions{margin-top:16px}
+.tabs{margin:26px 0 18px}
+.btn{border:0;border-radius:5px;padding:11px 15px;font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.13em;font-weight:600}
+.btn:disabled{opacity:.55;cursor:wait}
+.primary,.approve{background:var(--green);color:#fff}
+.primary:hover,.approve:hover{background:var(--green2)}
+.ghost{background:#eee8d9;color:var(--ink)}
+.danger{background:var(--danger);color:#fff}
+.tab{background:#eee8d9;color:var(--ink)}
+.tab.active{background:var(--green);color:#fff}
+.session{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:15px}
+.grid{display:grid;gap:12px}
+.wish{padding:19px}
+.wish-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.wish-name{font-family:'Italiana',serif;font-size:25px;color:var(--gold)}
+.status-pill{border-radius:99px;padding:3px 9px;background:#eee8d9;font-family:'Cinzel',serif;font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.wish-message{white-space:pre-wrap;overflow-wrap:anywhere;margin:9px 0 12px}
+.meta{color:var(--muted);font-size:14px}
+.notice{min-height:26px;color:var(--muted);font-style:italic}
+.notice.error{color:var(--danger)}
+.empty{padding:32px;text-align:center;border:1px dashed var(--border);border-radius:10px;color:var(--muted);font-style:italic}
+.hidden{display:none!important}
+@media(max-width:520px){.btn{flex:1}.tabs .btn{flex:1 1 42%}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">PRIVATE MODERATION</div>
+      <h1>Wishes Admin</h1>
+      <p class="subtitle">Approve a wish before it appears on the invitation.</p>
+    </div>
+    <div id="sessionBox" class="session hidden">
+      <span id="sessionEmail"></span>
+      <button class="btn ghost" type="button" id="logoutButton">SIGN OUT</button>
+    </div>
+  </header>
+
+  <section id="loginPanel" class="panel" aria-labelledby="loginTitle">
+    <h2 id="loginTitle">Admin sign in</h2>
+    <p class="subtitle">Use the email and password account authorized in Supabase.</p>
+    <form id="loginForm">
+      <label class="label" for="email">EMAIL</label>
+      <input class="input" id="email" name="email" type="email" autocomplete="username" required>
+      <label class="label" for="password">PASSWORD</label>
+      <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
+      <div class="actions">
+        <button class="btn primary" id="loginButton" type="submit">SIGN IN</button>
+      </div>
+    </form>
+    <div id="loginStatus" class="notice" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="dashboard" class="hidden" aria-label="Wish moderation dashboard">
+    <nav class="tabs" aria-label="Wish status filters">
+      <button class="btn tab active" type="button" data-status="pending">PENDING</button>
+      <button class="btn tab" type="button" data-status="approved">APPROVED</button>
+      <button class="btn tab" type="button" data-status="rejected">REJECTED</button>
+      <button class="btn ghost" type="button" id="refreshButton">REFRESH</button>
+    </nav>
+    <div id="adminStatus" class="notice" role="status" aria-live="polite"></div>
+    <div id="wishGrid" class="grid"></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3/dist/umd/supabase.min.js"></script>
+<script src="supabase-config.js"></script>
+<script>
+'use strict';
+
+var settings = window.WEDDING_SUPABASE || {};
+var configured = Boolean(
+  window.supabase &&
+  /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(settings.url || '') &&
+  settings.anonKey &&
+  !settings.anonKey.includes('YOUR_')
+);
+var db = configured
+  ? window.supabase.createClient(settings.url, settings.anonKey, {
+      auth:{persistSession:true, autoRefreshToken:true, detectSessionInUrl:true}
+    })
+  : null;
+var currentStatus = 'pending';
+
+var loginPanel = document.getElementById('loginPanel');
+var dashboard = document.getElementById('dashboard');
+var sessionBox = document.getElementById('sessionBox');
+var loginStatus = document.getElementById('loginStatus');
+var adminStatus = document.getElementById('adminStatus');
+var wishGrid = document.getElementById('wishGrid');
+
+function setNotice(element, message, isError) {
+  element.textContent = message;
+  element.className = 'notice' + (isError ? ' error' : '');
+}
+
+function showLogin(message, isError) {
+  loginPanel.classList.remove('hidden');
+  dashboard.classList.add('hidden');
+  sessionBox.classList.add('hidden');
+  if (message) setNotice(loginStatus, message, isError);
+}
+
+function showDashboard(emailAddress) {
+  loginPanel.classList.add('hidden');
+  dashboard.classList.remove('hidden');
+  sessionBox.classList.remove('hidden');
+  document.getElementById('sessionEmail').textContent = emailAddress || 'Authorized admin';
+}
+
+async function verifyAdmin() {
+  if (!db) {
+    showLogin('Configure supabase-config.js before using this page.', true);
+    return null;
+  }
+
+  var sessionResult = await db.auth.getSession();
+  var session = sessionResult.data.session;
+  if (!session) {
+    showLogin();
+    return null;
+  }
+
+  var adminResult = await db
+    .from('wish_admins')
+    .select('user_id')
+    .eq('user_id', session.user.id)
+    .maybeSingle();
+  if (adminResult.error || !adminResult.data) {
+    await db.auth.signOut();
+    showLogin('This account is not authorized to moderate wishes.', true);
+    return null;
+  }
+
+  showDashboard(session.user.email);
+  return session.user;
+}
+
+async function signIn(event) {
+  event.preventDefault();
+  if (!db) {
+    showLogin('Configure supabase-config.js before using this page.', true);
+    return;
+  }
+
+  var button = document.getElementById('loginButton');
+  button.disabled = true;
+  setNotice(loginStatus, 'Signing in…', false);
+  var result = await db.auth.signInWithPassword({
+    email:document.getElementById('email').value.trim(),
+    password:document.getElementById('password').value
+  });
+  button.disabled = false;
+
+  if (result.error) {
+    setNotice(loginStatus, 'Sign-in failed. Check the account details and try again.', true);
+    return;
+  }
+  document.getElementById('password').value = '';
+  if (await verifyAdmin()) await loadWishes();
+}
+
+async function signOut() {
+  if (db) await db.auth.signOut();
+  showLogin('Signed out.', false);
+}
+
+function textElement(tag, className, value) {
+  var element = document.createElement(tag);
+  if (className) element.className = className;
+  element.textContent = value;
+  return element;
+}
+
+function actionButton(label, className, action) {
+  var button = textElement('button', 'btn ' + className, label);
+  button.type = 'button';
+  button.addEventListener('click', action);
+  return button;
+}
+
+function makeWishCard(wish) {
+  var card = document.createElement('article');
+  card.className = 'wish';
+
+  var head = document.createElement('div');
+  head.className = 'wish-head';
+  head.append(
+    textElement('div', 'wish-name', wish.name),
+    textElement('span', 'status-pill', wish.status)
+  );
+  card.append(head, textElement('div', 'wish-message', wish.message));
+
+  var created = new Date(wish.created_at).toLocaleString();
+  var reviewed = wish.reviewed_at ? ' · Reviewed ' + new Date(wish.reviewed_at).toLocaleString() : '';
+  card.append(textElement('div', 'meta', 'Received ' + created + reviewed));
+
+  var actions = document.createElement('div');
+  actions.className = 'actions';
+  if (wish.status !== 'approved') {
+    actions.append(actionButton('APPROVE', 'approve', function(){changeStatus(wish.id, 'approved');}));
+  }
+  if (wish.status !== 'rejected') {
+    actions.append(actionButton('REJECT', 'ghost', function(){changeStatus(wish.id, 'rejected');}));
+  }
+  if (wish.status !== 'pending') {
+    actions.append(actionButton('MOVE TO PENDING', 'ghost', function(){changeStatus(wish.id, 'pending');}));
+  }
+  actions.append(actionButton('DELETE', 'danger', function(){deleteWish(wish.id, wish.name);}));
+  card.append(actions);
+  return card;
+}
+
+async function loadWishes() {
+  wishGrid.replaceChildren();
+  setNotice(adminStatus, 'Loading…', false);
+  if (!await verifyAdmin()) return;
+
+  var result = await db
+    .from('wishes')
+    .select('id,name,message,status,created_at,reviewed_at')
+    .eq('status', currentStatus)
+    .order('created_at', {ascending:false});
+
+  if (result.error) {
+    setNotice(adminStatus, 'Unable to load wishes: ' + result.error.message, true);
+    return;
+  }
+
+  var count = result.data.length;
+  setNotice(adminStatus, count + ' ' + currentStatus + ' wish' + (count === 1 ? '' : 'es') + '.', false);
+  if (!count) {
+    wishGrid.append(textElement('div', 'empty', 'No ' + currentStatus + ' wishes.'));
+    return;
+  }
+  result.data.forEach(function(wish){wishGrid.append(makeWishCard(wish));});
+}
+
+async function changeStatus(id, newStatus) {
+  setNotice(adminStatus, 'Saving…', false);
+  var result = await db.from('wishes').update({status:newStatus}).eq('id', id);
+  if (result.error) {
+    setNotice(adminStatus, 'Unable to update this wish: ' + result.error.message, true);
+    return;
+  }
+  await loadWishes();
+}
+
+async function deleteWish(id, name) {
+  if (!window.confirm('Permanently delete the wish from ' + name + '?')) return;
+  setNotice(adminStatus, 'Deleting…', false);
+  var result = await db.from('wishes').delete().eq('id', id);
+  if (result.error) {
+    setNotice(adminStatus, 'Unable to delete this wish: ' + result.error.message, true);
+    return;
+  }
+  await loadWishes();
+}
+
+document.getElementById('loginForm').addEventListener('submit', signIn);
+document.getElementById('logoutButton').addEventListener('click', signOut);
+document.getElementById('refreshButton').addEventListener('click', loadWishes);
+document.querySelectorAll('.tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    currentStatus = tab.dataset.status;
+    document.querySelectorAll('.tab').forEach(function(item){item.classList.remove('active');});
+    tab.classList.add('active');
+    loadWishes();
+  });
+});
+
+(async function initialiseAdmin() {
+  if (await verifyAdmin()) await loadWishes();
+})();
+</script>
+</body>
+</html>
